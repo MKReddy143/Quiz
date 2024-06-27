@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			font-family: "Poppins", sans-serif;
+		}
+
+		body {
+			height: 100vh;
+			background: linear-gradient(184deg, #8754ff, #8E2DE2);
+		}
+
+		button {
+			border: none;
+			outline: none;
+			cursor: pointer;
+		}
+
+		#display-container {
+			background-color: #ffffff;
+			padding: 3.1em 1.8em;
+			width: 80%;
+			max-width: 37.5em;
+			margin: 0 auto;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			border-radius: 0.6em;
+		}
+
+		.header {
+			margin-bottom: 1.8em;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-bottom: 0.6em;
+			border-bottom: 0.1em solid #c0bfd2;
+		}
+
+		.timer-div {
+			background-color: #e1f5fe;
+			width: 7.5em;
+			border-radius: 1.8em;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0.7em 1.8em;
+		}
+
+		.question {
+			margin-bottom: 1.25em;
+			font-weight: 600;
+		}
+
+		.option-div {
+			font-size: 0.9em;
+			width: 100%;
+			padding: 1em;
+			margin: 0.3em 0;
+			text-align: left;
+			outline: none;
+			background: transparent;
+			border: 1px solid #c0bfd2;
+			border-radius: 0.3em;
+		}
+
+		.option-div:disabled {
+			color: #000000;
+			cursor: not-allowed;
+		}
+
+		#next-button {
+			font-size: 1em;
+			margin-top: 1.5em;
+			background-color: #8754ff;
+			color: #ffffff;
+			padding: 0.7em 1.8em;
+			border-radius: 0.3em;
+			float: right;
+			box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+		}
+
+		.incorrect {
+			background-color: #ffdde0;
+			color: #d32f2f;
+			border-color: #d32f2f;
+		}
+
+		.correct {
+			background-color: #e7f6d5;
+			color: #689f38;
+			border-color: #689f38;
+		}
+	</style>
+	<title>Quiz App</title>
+</head>
+
+<body>
+	<form th:action="@{/CheckAnswers}" method="post" th:object="${Quiz}">
+
+		<div id="display-container">
+
+			<div class="header">
+				<div class="number-of-count">
+					<span class="number-of-question">
+						<tbody>
+							<tr>
+								<h3>
+									<p>
+										<input type="hidden" name="id" th:value="${Quiz.id}" />
+										<td th:text="${Quiz.question}"></td>
+									</p>
+								</h3>
+							</tr>
+						</tbody>
+					</span>
+				</div>
+
+			</div>
+			<div id="container">
+				<!-- questions and options will be displayed here -->
+				<h4>
+
+					<li>
+						<input type="radio" id="option1" name="option" th:value="${Quiz.option1}">
+						<label for="option3" th:text="${Quiz.option1}"></label>
+					</li>
+					<br>
+					<li>
+						<input type="radio" id="option2" name="option" th:value="${Quiz.option2}">
+						<label for="option3" th:text="${Quiz.option2}"></label>
+					</li>
+					<br>
+					<li>
+						<input type="radio" id="option3" name="option" th:value="${Quiz.option3}">
+						<label for="option3" th:text="${Quiz.option3}"></label>
+					</li>
+				</h4>
+			</div>
+			<button id="next-button">Next</button>
+		</div>
+
+	</form>
+</body>
+
+</html>
